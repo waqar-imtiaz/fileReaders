@@ -1,0 +1,32 @@
+<input type="file" (change)="onFileSelected($event)" multiple>
+<div *ngFor="let file of files">
+  <div (click)="openPreview(file)">
+    <img *ngIf="file.type.startsWith('image/')" [src]="file.url" alt="File thumbnail">
+    <video *ngIf="file.type.startsWith('video/')" width="100">
+      <source [src]="file.url">
+    </video>
+    <div *ngIf="file.type === 'text/plain'">{{ file.thumbnail }}</div>
+    <div *ngIf="file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'" [innerHTML]="file.thumbnail"></div>
+    <pre *ngIf="file.type === 'text/csv' || file.type ==='application/vnd.ms-excel'">{{ file.thumbnail }}</pre>
+    <div *ngIf="file.type === 'application/vnd.openxmlformats-officedocument.presentationml.presentation'" [innerHTML]="file.thumbnail">
+    </div>
+    <div *ngIf="file.type === 'text/tab-separated-values'" [innerHTML]="file.thumbnail"></div>
+    <!-- Add more types as needed -->
+  </div>
+</div>
+
+<ng-template #filePreview let-dialogRef>
+  <button (click)="closeDialog()">Close</button>
+  <div class="full-screen-preview">
+    <img *ngIf="selectedFile?.type.startsWith('image/')" [src]="selectedFile?.url">
+    <video *ngIf="selectedFile?.type.startsWith('video/')" controls>
+      <source [src]="selectedFile?.url">
+    </video>
+    <pre *ngIf="selectedFile?.type === 'text/plain'">{{ selectedFile?.content }}</pre>
+    <div *ngIf="selectedFile?.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'" [innerHTML]="selectedFile?.thumbnail"></div>
+    <pre *ngIf="selectedFile?.type === 'text/csv' || selectedFile?.type ==='application/vnd.ms-excel'">{{ selectedFile?.content }}</pre>
+    <div *ngIf="selectedFile?.type === 'application/vnd.openxmlformats-officedocument.presentationml.presentation'" [innerHTML]="selectedFile?.enlargedPreview"]></div>
+    <div *ngIf="selectedFile?.type === 'text/tab-separated-values'" [innerHTML]="selectedFile?.enlargedPreview"></div>
+    <!-- Add other previews as needed -->
+  </div>
+</ng-template>
