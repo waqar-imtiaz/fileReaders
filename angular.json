@@ -32,9 +32,20 @@
               }
             ],
             "styles": [
+              "src/assets/css/pptxjs.css",
+              "src/assets/css/nv.d3.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery-1.11.3.min.js",
+              "src/assets/js/jszip.min.js",
+              "src/assets/js/filereader.js",
+              "src/assets/js/d3.min.js",
+              "src/assets/js/nv.d3.min.js",
+              "src/assets/js/dingbat.js",
+              "src/assets/js/pptxjs.js",
+              "src/assets/js/divs2slides.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -93,10 +104,14 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

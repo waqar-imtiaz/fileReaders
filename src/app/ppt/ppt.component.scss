@@ -1,0 +1,17 @@
+/* pptx-preview.component.css */
+.slide-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slide {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.slide-content {
+  background-color: white;
+  overflow: hidden;
+}

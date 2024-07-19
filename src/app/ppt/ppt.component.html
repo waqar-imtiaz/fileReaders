@@ -1,0 +1,30 @@
+<!-- <input type="file" (change)="onFileChange($event)" accept=".ppt,.pptx">
+<div [innerHTML]="htmlData"></div> -->
+
+
+<!-- pptx-preview.component.html -->
+<!-- pptx-preview.component.html -->
+<input type="file" (change)="handleFileInput($event)" accept=".pptx">
+
+<div *ngIf="loading">Loading...</div>
+
+<div class="slide-container">
+  <div *ngFor="let slide of slides; let i = index" class="slide">
+    <h3>Slide {{i + 1}}</h3>
+    <div class="slide-content" [ngStyle]="{'width': '960px', 'height': '540px', 'position': 'relative'}">
+      <div *ngFor="let element of slide.elements"
+           [ngSwitch]="element.type"
+           [ngStyle]="{
+             'position': 'absolute',
+             'left.px': element.position.x,
+             'top.px': element.position.y,
+             'width.px': element.position.width,
+             'height.px': element.position.height
+           }">
+        <div *ngSwitchCase="'text'" [ngStyle]="element.style">{{ element.content }}</div>
+        <img *ngSwitchCase="'image'" [src]="element.content" [ngStyle]="element.style">
+        <div *ngSwitchCase="'shape'" [ngStyle]="element.style">{{ element.content }}</div>
+      </div>
+    </div>
+  </div>
+</div>
